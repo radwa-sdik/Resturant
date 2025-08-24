@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Data;
 using Restaurant.Models;
+using Restaurant.Repository;
 
 namespace Restaurant
 {
@@ -20,6 +21,13 @@ namespace Restaurant
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IRepository<Ingredient>, Repository<Ingredient>>()
+                .AddScoped<IRepository<Product>, Repository<Product>>()
+                .AddScoped<IRepository<ProductIngredient>, Repository<ProductIngredient>>()
+                .AddScoped<IRepository<Category>, Repository<Category>>()
+                .AddScoped<IRepository<Order>, Repository<Order>>()
+                .AddScoped<IRepository<OrderItem>, Repository<OrderItem>>()
+                .AddScoped<IRepository<ApplicationUser>, Repository<ApplicationUser>>();
 
             var app = builder.Build();
 
@@ -44,7 +52,7 @@ namespace Restaurant
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Ingrediant}/{action=Index}/{id?}");
             app.MapRazorPages();
 
             app.Run();

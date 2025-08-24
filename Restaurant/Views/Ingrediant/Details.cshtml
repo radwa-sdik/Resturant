@@ -1,0 +1,28 @@
+﻿@model Ingredient
+@{
+    ViewBag.Title = "Ingrediant Details";
+}
+<h1>@Model.Name Details</h1>
+@if (Model.ProductIngredients != null && Model.ProductIngredients.Any())
+{
+    <h4>Products</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var productIngrediant in Model.ProductIngredients)
+            {
+                <tr>
+                    <td>@productIngrediant.Product.Name</td>
+                    <td>@productIngrediant.Product.Description</td>
+                    <td>@productIngrediant.Product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
