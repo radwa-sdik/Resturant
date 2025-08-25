@@ -3,6 +3,7 @@
     ViewBag.Title = "Ingrediants";
 }
 <h1>Ingrediants</h1>
+<a asp-action="Create">Create New Ingrediant</a>
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +16,11 @@
         {
             <tr>
                 <td>@ingrediant.Name</td>
-                <td><a asp-action="Details" asp-route-id="@ingrediant.IngredientId">Details</a></td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@ingrediant.IngredientId">Details</a>
+                    <a asp-action="Edit" asp-route-id="@ingrediant.IngredientId">Edit</a>
+                    <partial name="_DeleteModalPV" model="ingrediant"></partial>
+                </td>            
             </tr>
         }
     </tbody>

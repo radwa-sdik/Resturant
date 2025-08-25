@@ -1,0 +1,15 @@
+﻿@model Restaurant.Models.Ingredient
+@{
+    ViewBag.Title = "Create New Ingerdiant";
+}
+<h1>Create New Ingrediant</h1>
+<form asp-controller="Ingrediant" asp-action="Create" method="post">
+    <label asp-for="Name"></label>
+    <div class="col-3">
+        <input asp-for="Name" class="form-control mt-3 mb-3" />
+    </div>
+    <span asp-validation-for="Name" class="text-danger d-block mb-3"></span>
+    <button type="submit" class="btn btn-primary d-inline-block ml-5">Create</button>
+    <a asp-action="Index" class="btn btn-secondary d-inline-block">Back To List</a>
+</form>
+

@@ -25,5 +25,46 @@ namespace Restaurant.Controllers
             }); 
             return View(ingrediant);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Ingredient ingredient) {
+            if (ModelState.IsValid) {
+                await _ingrediantRepo.AddAsync(ingredient);
+                return RedirectToAction("Index");
+            }
+          
+            return View(ingredient);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id) {
+            Ingredient? ingredient = await _ingrediantRepo.GetByIdAsync(id, new QueryOptions<Ingredient>());
+            return View(ingredient);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Ingredient ingredient)
+        {
+            if (ModelState.IsValid) { 
+                await _ingrediantRepo.UpdateAsync(ingredient);
+                return RedirectToAction("Index");
+            }
+
+            return View(ingredient);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _ingrediantRepo.RemoveAsync(id);
+            return RedirectToAction("Index");
+        }
     }
 }
