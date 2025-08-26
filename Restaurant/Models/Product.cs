@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,6 +17,7 @@ namespace Restaurant.Models
         [Required]
         [Range(1, 1_000_000_000)]
         public decimal Price { get; set; } = 1m;
+        [DisplayName("Quantity In Stock")]
         public int Stock { get; set; } = 0;
         [NotMapped]
         public IFormFile? ImageFile {  get; set; }
@@ -28,5 +30,11 @@ namespace Restaurant.Models
         public ICollection<OrderItem>? OrderItems { get; set; }
         [ValidateNever]
         public ICollection<ProductIngredient>? ProductIngredients { get; set; }
+
+        public Product()
+        {
+            OrderItems = new List<OrderItem>();
+            ProductIngredients = new List<ProductIngredient>();
+        }
     }
 }

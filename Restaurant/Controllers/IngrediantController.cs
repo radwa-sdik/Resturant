@@ -61,6 +61,7 @@ namespace Restaurant.Controllers
             return View(ingredient);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             await _ingrediantRepo.RemoveAsync(id);

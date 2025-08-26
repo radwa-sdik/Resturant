@@ -3,19 +3,21 @@
 <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModalFor@(Model.Name)">Delete</a>
 
 <!-- Modal -->
-<div class="modal fade" id="deleteModalFor@(Model.Name)" tabindex="-1" aria-labelledby="ModalLabelFor@(Model.Name)" aria-hidden="true">
+<div class="modal fade" id="deleteModalFor@(Model.Name)" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="deleteModalLabelFor@(Model.Name)">Delete Ingrediant</h5>
+                <h5 class="modal-title text-danger" id="deleteModalLabel">Delete @Model.Name</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Are You Sure you want to Delete this Ingrediant "<span class="text-warning">@Model.Name</span>" ??</p>
+                <p>Are You Sure you want to Delete this Ingredient ??</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a asp-action="Delete" asp-route-id="@Model.IngredientId" type="button" class="btn btn-danger">Delete</a>
+                <form asp-controller="Ingredient" asp-action="Delete" asp-route-id="@Model.IngredientId">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button  type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>
