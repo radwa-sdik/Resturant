@@ -1,0 +1,6 @@
+﻿@model Product 
+@{
+    string operation = (string)ViewBag.Operation;
+
+    ViewBag.Title = operation == "Add" ? "Add New Item" : "Update Item";
+}

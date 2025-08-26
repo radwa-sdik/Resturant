@@ -19,7 +19,7 @@ namespace Restaurant.Models
         public int Stock { get; set; } = 0;
         [NotMapped]
         public IFormFile? ImageFile {  get; set; }
-        public string? ImageUrl { get; set; } = "https://via.placeholder.com/150";
+        public string? ImageUrl { get; set; } = "placeholder-image.png";
         [Required]
         public int CategoryId { get; set; }
         [ValidateNever]

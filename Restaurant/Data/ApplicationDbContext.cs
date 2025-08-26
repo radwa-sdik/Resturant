@@ -66,7 +66,8 @@ namespace Restaurant.Data
                     Description = "A delicious beef taco",
                     Price = 2.50m,
                     Stock = 100,
-                    CategoryId = 2
+                    CategoryId = 2,
+                    ImageUrl = "beeftacos.jpg"
                 },
                 new Product
                 {
@@ -75,7 +76,8 @@ namespace Restaurant.Data
                     Description = "A delicious chicken taco",
                     Price = 1.99m,
                     Stock = 101,
-                    CategoryId = 2
+                    CategoryId = 2,
+                    ImageUrl = "chickentacos.jpg"
                 },
                 new Product
                 {
@@ -84,7 +86,8 @@ namespace Restaurant.Data
                     Description = "A delicious fish taco",
                     Price = 3.99m,
                     Stock = 90,
-                    CategoryId = 2
+                    CategoryId = 2,
+                    ImageUrl = "fishtacos.jpg"
                 }
             );
 

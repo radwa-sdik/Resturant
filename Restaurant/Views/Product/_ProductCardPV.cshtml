@@ -1,0 +1,12 @@
+﻿@model Product
+
+<div class="card" style="width: 100%;">
+    <img src="~/image/@Model.ImageUrl" class="card-img-top fixed-image-height" alt="@Model.Name Image">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <p class="card-text">@Model.Price.ToString("C")</p>
+        <p class="card-text">Quantity In Stock: @Model.Stock</p>
+        <a href="#" class="btn btn-success">Add To Cart</a>
+    </div>
+</div>
