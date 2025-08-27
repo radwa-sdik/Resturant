@@ -1,0 +1,65 @@
+﻿@model OrderVM
+@{
+    ViewData["Title"] = "Cart";
+}
+<h1>Cart</h1>
+@if (Model.OrderItems != null && Model.OrderItems.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                decimal totalPrice = item.Price * item.Quantity;
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                    <td>@(totalPrice.ToString("C"))</td>
+                    <td>
+                        <form asp-controller="Order" asp-action="RemoveItem" method="post" class="d-inline">
+                            <input type="hidden" name="ProductId" value="@item.ProductId" />
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-trash"></i> Remove
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                <td colspan="2">@Model.TotalAmount.ToString("C")</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <form asp-controller="Order" asp-action="PlaceOrder">
+            <a asp-controller="Order" asp-action="Create" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        Your cart is empty. Please add some products to your cart.
+    </div>
+    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">
+        <i class="fa-solid fa-arrow-left"></i> Back to Products
+    </a>
+}

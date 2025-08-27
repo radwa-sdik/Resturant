@@ -115,6 +115,7 @@ namespace Restaurant.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
+
             await _productRepo.RemoveAsync(id);
             return RedirectToAction("Index", "Product");
         }

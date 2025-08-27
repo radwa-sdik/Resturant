@@ -20,6 +20,7 @@ namespace Restaurant
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IRepository<Ingredient>, Repository<Ingredient>>()
                 .AddScoped<IRepository<Product>, Repository<Product>>()
@@ -28,6 +29,12 @@ namespace Restaurant
                 .AddScoped<IRepository<Order>, Repository<Order>>()
                 .AddScoped<IRepository<OrderItem>, Repository<OrderItem>>()
                 .AddScoped<IRepository<ApplicationUser>, Repository<ApplicationUser>>();
+
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
 
             var app = builder.Build();
 
@@ -49,10 +56,10 @@ namespace Restaurant
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Product}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
             app.Run();

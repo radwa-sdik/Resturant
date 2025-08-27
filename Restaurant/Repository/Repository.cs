@@ -25,6 +25,18 @@ namespace Restaurant.Repository
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync<TKey>(TKey id, string propertyName, QueryOptions<T> options)
+        {
+            IQueryable<T> query = _dbSet;
+            if (options.HasWhere) query = query.Where(options.Where);
+            if (options.HasOrderBy) query = query.OrderBy(options.OrderBy);
+            foreach (var item in options.GetIncludes()) query = query.Include(item);
+
+            query = query.Where(e => EF.Property<TKey>(e, propertyName).Equals(id));
+
+            return await query.ToListAsync();
+        }
+
         public async Task<T> GetByIdAsync(int id, QueryOptions<T> options)
         {
             IQueryable<T> query = _dbSet;

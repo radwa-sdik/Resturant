@@ -1,0 +1,31 @@
+﻿@model Product
+
+<div class="card" style="width: 100%;">
+    <img src="~/image/@Model.ImageUrl" class="card-img-top fixed-image-height" alt="@Model.Name Image">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description - @Model.Price.ToString("C")</p>       
+        @{
+            if (ViewBag.isOrder)
+            {
+                <form asp-controller="Order" asp-action="AddItem" method="post">
+                    <input type="number" name="Quantity" id="Quantity" class="form-control my-2" />
+                    <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        Add to Cart
+                    </button>
+                </form>
+            }
+            else
+            {
+                <p class="card-text">Quantity In Stock: @Model.Stock</p>
+                <a asp-controller="Product" asp-action="AddEdit" asp-route-id="@Model.ProductId" class="btn btn-primary">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Edit
+                </a>
+                <partial name="_DeleteModalPV" model="Model" />
+            }
+        }        
+    </div>
+</div>
