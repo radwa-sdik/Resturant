@@ -82,15 +82,16 @@ Ensure you have the following installed:
 ---
 
 ## Project Structure
-Restaurant/
-├── Areas/ # ASP.NET Core Identity (for authentication & user management)
-├── Controllers/ # MVC controllers (Products, Ingredients, Orders, etc.)
-├── Data/ # Database context (ApplicationDbContext)
-├── Models/ # Entity models (Product, Ingredient, Order, etc.)
-├── Repository/ # Generic repository pattern implementation
-├── ViewModel/ # View models for passing data to views
-├── Views/ # Razor views (UI pages)
-├── wwwroot/ # Static files (CSS, JS, images)
-├── appsettings.json # Configuration (connection strings, settings)
-├── Program.cs # Application startup configuration
-└── Properties/ # Project properties (launchSettings.json, etc.)
+```bash
+  Restaurant/
+  ├── Areas/ # ASP.NET Core Identity (for authentication & user management)
+  ├── Controllers/ # MVC controllers (Products, Ingredients, Orders, etc.)
+  ├── Data/ # Database context (ApplicationDbContext)
+  ├── Models/ # Entity models (Product, Ingredient, Order, etc.)
+  ├── Repository/ # Generic repository pattern implementation
+  ├── ViewModel/ # View models for passing data to views
+  ├── Views/ # Razor views (UI pages)
+  ├── wwwroot/ # Static files (CSS, JS, images)
+  ├── appsettings.json # Configuration (connection strings, settings)
+  ├── Program.cs # Application startup configuration
+  └── Properties/ # Project properties (launchSettings.json, etc.)
